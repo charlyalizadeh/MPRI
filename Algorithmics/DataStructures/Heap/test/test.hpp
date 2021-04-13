@@ -1,6 +1,6 @@
 #include <cxxtest/TestSuite.h>
 #include <vector>
-#include "heap.hpp"
+#include "../heap.hpp"
 
 class MaxBinaryHeapTest: public CxxTest::TestSuite {
     public:
