@@ -5,41 +5,15 @@
 #include "node.hpp"
 
 
-template<typename T>
-Node<T>* find_min(Node<T>* root) {
-    Node<T>* min_node = root;
-    while(min_node->left != nullptr) {
-        min_node = min_node->left;
-    }
-    return min_node;
-}
-
-template<typename T>
-Node<T>* find_max(Node<T>* root) {
-    Node<T>* min_node = root;
-    while(min_node->right != nullptr) {
-        min_node = min_node->right;
-    }
-    return min_node;
-}
-
 template <typename T>
-void insertBST(Node<T>* root, T value, bool valid_equal=true) {
-    if(!valid_equal && value == root->value)
-        return;
-    if(value > root->value) {
-        if(root->right)
-            insertBST(root->right, value, valid_equal);
-        else
-            root->right = new Node<T>(value);
-    }
-    else {
-        if(root->left)
-            insertBST(root->left, value, valid_equal);
-        else
-            root->left = new Node<T>(value);
-
-    }
+Node<T>* insertBST(Node<T>* root, T value) {
+    if(!root)
+        return new Node<T>(value);
+    if(value > root->value)
+        root->right = insertBST(root->right, value);
+    else
+        root->left = insertBST(root->left, value);
+    return root;
 }
 
 template<typename T>
@@ -80,7 +54,7 @@ Node<T>* deleteBST(Node<T>* root, T value) {
         if(!(root->left)) {
             return root->right;
         }
-        Node<T>* min_node = find_min(root->right);
+        Node<T>* min_node = root->right->find_min();
         root->value = min_node->value;
         root->right = deleteBST(root->right, min_node->value);
     }
