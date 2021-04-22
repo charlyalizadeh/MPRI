@@ -18,27 +18,32 @@ int parent_index(size_t index) {
     return (index - 1) / 2;
 }
 
-template <typename T>
-class MaxBinaryHeap {
-    private:
+template <typename T, typename Compare = std::greater<T>>
+class BinaryHeap {
+    protected:
         std::vector<T> m_data;
+        Compare m_comp;
 
     public:
 
         // Creation
-        MaxBinaryHeap(std::vector<T>& data): m_data(data) { 
+        BinaryHeap(Compare comp = Compare()): m_data({}), m_comp(comp) { }
+        BinaryHeap(std::vector<T>& data, Compare comp = Compare()): m_data(data), m_comp(comp) { 
             for(int i = m_data.size() / 2 - 1; i >= 0; i--) {
                 heapify_down(i);
             }
         }
-        MaxBinaryHeap(): m_data({}) { }
-        MaxBinaryHeap<T> merge(const MaxBinaryHeap<T>& other) const {
+        void merge(const BinaryHeap<T>& other, BinaryHeap<T>& result, bool clear=true) const {
             auto merged_data = std::vector<T>();
             merged_data.insert(merged_data.end(), m_data.begin(), m_data.end());
             merged_data.insert(merged_data.end(), other.m_data.begin(), other.m_data.end());
-            return MaxBinaryHeap<T>(merged_data);
+            result.clear();
+            result.m_data = merged_data;
+            for(int i = merged_data.size() / 2 - 1; i >= 0; i--) {
+                result.heapify_down(i);
+            }
         }
-        void meld(MaxBinaryHeap<T>& other) {
+        void meld(BinaryHeap<T>& other) {
             for(auto const& d : other.m_data) {
                 push(d);
             }
@@ -71,13 +76,16 @@ class MaxBinaryHeap {
         void replace(size_t index, const T& value) {
             if(value == m_data[index])
                 return;
-            if(value > m_data[index]) {
+            if(m_comp(value, m_data[index])) {
                 m_data[index] = value;
                 heapify_up(index);
             } else {
                 m_data[index] = value;
                 heapify_down(index);
             }
+        }
+        void clear() {
+            m_data.clear();
         }
 
 
@@ -116,7 +124,7 @@ class MaxBinaryHeap {
             return m_data;
         }
 
-        friend std::ostream& operator<<(std::ostream& out, const MaxBinaryHeap<T>& heap) {
+        friend std::ostream& operator<<(std::ostream& out, const BinaryHeap<T>& heap) {
             if(!heap.empty()) {
                 out << '[';
                 std::copy (heap.m_data.begin(), heap.m_data.end(), std::ostream_iterator<T>(out, ", "));
@@ -126,8 +134,8 @@ class MaxBinaryHeap {
         }
 
 
-    private:
-
+    protected:
+        //virtual bool compare(T a, T b) = 0;
 
         // Internal
         void swap(size_t index1, size_t index2) {
@@ -137,16 +145,15 @@ class MaxBinaryHeap {
             if(value == m_data[index]) {
                 return;
             }
-            bool is_bigger = value > m_data[index];
             m_data[index] = value;
-            if(is_bigger)
+            if(m_comp(value, m_data[index]))
                 heapify_up(index);
             else
                 heapify_down(index);
         }
         void heapify_up(size_t index) {
             int p_index = parent_index(index);
-            while(p_index >= 0 && m_data[p_index] < m_data[index]) {
+            while(p_index >= 0 && m_comp(m_data[index], m_data[p_index])) {
                 swap(index, p_index);
                 index = p_index;
                 p_index = parent_index(index);
@@ -155,19 +162,19 @@ class MaxBinaryHeap {
         void heapify_down(size_t index) { 
             int left_index = left_child_index(index);
             while(left_index < m_data.size()) {
-                int bigger_index = left_index;
+                int current_index = left_index;
                 int right_index = right_child_index(index);
-                if(right_index < m_data.size() && m_data[right_index] > m_data[left_index]) {
-                    bigger_index = right_index;
+                if(right_index < m_data.size() && m_comp(m_data[right_index], m_data[left_index])) {
+                    current_index = right_index;
                 }
-                if(m_data[index] < m_data[bigger_index]) {
-                    swap(index, bigger_index);
+                if(m_comp(m_data[current_index], m_data[index])) {
+                    swap(index, current_index);
                 }
                 else {
                     break;
                 }
-                index = bigger_index;
-                left_index = left_child_index(bigger_index);
+                index = current_index;
+                left_index = left_child_index(current_index);
             }
         }
 };

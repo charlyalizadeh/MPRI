@@ -53,7 +53,7 @@ std::pair<int, int> get_coord(int node_index, int display_width, std::vector<std
 // Only work if `T` overload `to_string`
 // Also this could be a lot less uglier, I may take the time later to improve this method
 template <typename T>
-auto get_heap_tree_str(MaxBinaryHeap<T> heap) {
+auto get_heap_tree_str(BinaryHeap<T> heap) {
     std::vector<std::string> data_str;
     for(auto const& d : heap.get_vector()) {
         data_str.push_back(std::to_string(d));
@@ -90,7 +90,7 @@ auto get_heap_tree_str(MaxBinaryHeap<T> heap) {
 }
 
 template <typename T>
-void print_heap(MaxBinaryHeap<T> heap) {
+void print_heap(BinaryHeap<T> heap) {
     auto tree = get_heap_tree_str(heap);
     for(auto const& row: tree) {
         std::cout << row << '\n';
