@@ -1,0 +1,146 @@
+---
+title: "Propositional Proof"
+---
+
+
+# Rule of inferences
+
+"A rule of inference is a pattern of reasoning consisting of some schemas, called premises, and one or more additional schemas, called conclusions."
+
+## Fitch rules of inferences
+
+### And Introduction (AI)
+
+$$
+\begin{array}{l}
+\varphi_1 \\
+\cdots \\
+\varphi_n \\
+\hline
+\varphi_1 \land \cdots \land \varphi_2
+\end{array}
+$$
+
+### And Elimination (AE)
+
+$$
+\begin{array}{l}
+\varphi_1 \land \cdots \land \varphi_i \land \cdots \land \varphi_n \\
+\hline
+\varphi_i
+\end{array}
+$$
+
+### Or Introduction (OI)
+
+$$
+\begin{array}{l}
+\varphi_i \\
+\hline
+\varphi_1 \lor \cdots \lor \varphi_i \lor \cdots \lor \varphi_n
+\end{array}
+$$
+
+### Negation Introduction (NI)
+
+$$
+\begin{array}{l}
+\varphi \Rightarrow \psi \\
+\varphi \Rightarrow \lnot\psi \\
+\hline
+\lnot\varphi
+\end{array}
+$$
+
+### Negation Elimination (NE)
+
+$$
+\begin{array}{l}
+\lnot\lnot\varphi \\
+\hline
+\varphi
+\end{array}
+$$
+
+### Implication Introduction (II)
+
+$$
+\begin{array}{l}
+\varphi \vdash \psi \\
+\hline
+\varphi \Rightarrow \psi
+\end{array}
+$$
+
+### Implication Elimination (IE)
+
+$$
+\begin{array}{l}
+\varphi \Rightarrow \psi \\
+\varphi \\
+\hline
+\psi
+\end{array}
+$$
+
+### Biconditional Introduction
+
+$$
+\begin{array}{l}
+\varphi \Rightarrow \psi \\
+\psi \Rightarrow \varphi \\
+\hline
+\varphi \Leftrightarrow \psi
+\end{array}
+$$
+
+### Biconditional Elimination
+
+$$
+\begin{array}{l}
+\varphi \Leftrightarrow \psi \\
+\hline
+\varphi \Rightarrow \psi \\
+\psi \Rightarrow \varphi \\
+\end{array}
+$$
+
+## Proof tips
+
+### $\varphi \Rightarrow \psi$
+
+1. Assume $\varphi$ and prove $\psi$
+2. Use Implication Introduction to derive $\varphi \Rightarrow \psi$
+
+### $\varphi \land \psi$
+
+1. Prove $\varphi$
+2. Prove $\psi$
+3. Use And Introduction to derive $\varphi \land \psi$
+
+### $\varphi \lor \psi$
+
+1. Prove either $\varphi$ or $\psi$
+2. Use Or Introduction to derive $\varphi \lor \psi$
+
+### $\lnot\varphi$
+
+1. Assume $\varphi$ and prove a contradiction ($\varphi \Rightarrow \psi$ and $\varphi \Rightarrow \lnot\psi$)
+2. Use Negation Introduction to derive $\lnot\varphi$
+
+### $\varphi$
+
+1. Assume $\lnot\varphi$ and prove a contradiction ($\lnot\varphi \Rightarrow \psi$ and $\lnot\varphi \Rightarrow \lnot\psi$)
+2. Use Negation Introduction to derive $\lnot\lnot\varphi$
+3. Use Negation Elimination to derive $\varphi$
+
+### $\psi$ when we have $\varphi \Rightarrow \psi$ as a premise
+
+1. Prove $\varphi$
+2. Use Implication Elimination to derive $\psi$
+
+### $\varkappa$ when we have $\varphi \lor \psi$ as a premise
+
+1. Prove $\varphi \Rightarrow \varkappa$
+2. Prove $\psi \Rightarrow \varkappa$
+3. Use Or Elimination to derive $\varkappa$

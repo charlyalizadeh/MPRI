@@ -1,0 +1,75 @@
+---
+title: "Logic basic"
+---
+
+# Simple sentences/Logical constants
+
+Strings of letters, digits, and underscores where the first character is a lower case letter.
+$p$
+$raining$
+$guate1\_01$
+
+# Compound sentences
+
+## Operators
+
+* Negation: $\lnot p$
+* Conjunction: $p \land q$
+* Disjunction: $p \lor q$
+* Implication: $p \Rightarrow q$
+* Biconditional: $p \Leftrightarrow q$
+
+## Operator precedence
+
+1. $()$
+2. $\lnot$
+3. $\land$
+4. $\lor$ 
+5. $\Rightarrow$
+6. $\Leftrightarrow$
+
+## Operator truth table
+
+| p | $\lnot$ |
+|---|---------|
+| 1 | 0       |
+| 0 | 1       |
+
+| p | q | p $\land$ q |
+|---|---|-------------|
+| 1 | 1 | 1           |
+| 1 | 0 | 0           |
+| 0 | 1 | 0           |
+| 0 | 0 | 0           |
+
+| p | q | p $\lor$ q |
+|---|---|------------|
+| 1 | 1 | 1          |
+| 1 | 0 | 1          |
+| 0 | 1 | 1          |
+| 0 | 0 | 0          |
+
+| p | q | p $\Rightarrow$ q |
+|---|---|-------------------|
+| 1 | 1 | 1                 |
+| 1 | 0 | 0                 |
+| 0 | 1 | 1                 |
+| 0 | 0 | 1                 |
+
+
+| p | q | p $\Leftrightarrow$ q |
+|---|---|-----------------------|
+| 1 | 1 | 1                     |
+| 1 | 0 | 0                     |
+| 0 | 1 | 0                     |
+| 0 | 0 | 1                     |
+
+# Logical Entailment
+
+A set of sentences $\psi$ *logically entails* a conclusion $\varphi$ if and only if every truth assignment satisfying $\psi$ satisfies $\varphi$
+We note $\psi \vDash \varphi$
+
+# Logical Concistency
+
+A set of senteces $\psi$ is *logically consistent* with another set of sentences $\varphi$ if and only if there exists a truth assignment
+satisfying $\psi$ and $\varphi$.
