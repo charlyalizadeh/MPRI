@@ -5,5 +5,5 @@ I use [rmarkdown](https://rmarkdown.rstudio.com/) to take notes.
 
 ## Table of contents
 
-* Basic [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/LogicsAndCompuability/LogicCourse/pdf/basic.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/LogicsAndCompuability/LogicCourse/src/basic.Rmd)
-* Proof [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/LogicsAndCompuability/LogicCourse/pdf/proof.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/LogicsAndCompuability/LogicCourse/src/proof.Rmd)
+* Basic [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/pdf/basic.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/src/basic.Rmd)
+* Proof [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/pdf/proof.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/src/proof.Rmd)
