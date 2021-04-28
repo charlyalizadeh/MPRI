@@ -12,7 +12,7 @@ A graph data structure is usually implemented using either a matrix (called an *
 | Delete vertex | O(\|V\|^2)       | O(\|V\| + \|E\|) |
 | Delete edge   | O(1)             | O(\|E\|)         |
 
-# Implementation
+## Implementation
 
 *  Adjacency matrix [`graphmatrix.hpp`](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/Algorithmics/DataStructures/Graph/graphmatrix.hpp)
     * Basic
