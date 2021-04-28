@@ -31,33 +31,34 @@ void increase_dim(matrix<int> &m, int inc=1) {
 };
 
 
-
-
 template<typename L = std::string>
-class GraphAdjacency {
+class GraphMatrix {
     private:
         matrix<int> adj;
         std::vector<L> label;
 
     public:
 
-        GraphAdjacency(): adj({}) {};
+        GraphMatrix(): adj({}) {};
 
         // Basic
+        void add_vertex() {
+            increase_dim(adj);
+            label.push_back(L());
+        }
         void add_edge(int src, int dst, double weight=1) {
             adj(src, dst) = weight;
             adj(dst, src) = weight;
             auto edges = get_edges();
         }
-        void add_vertex() {
-            increase_dim(adj);
-            label.push_back(L());
+        bool has_vertex(int vertex) {
+            return adj.size1() > vertex;
         }
         bool has_edge(int src, int dst) {
             return adj(src, dst) != 0;
         }
-        bool has_vertex(int vertex) {
-            return adj.size1() > vertex;
+        size_t nv() {
+            return adj.size1();
         }
         size_t ne() {
             int ne = 0;
@@ -65,9 +66,6 @@ class GraphAdjacency {
                 for(size_t j = i + 1; j < adj.size1(); j++)
                     ne += adj(i, j) != 0;
             return ne;
-        }
-        size_t nv() {
-            return adj.size1();
         }
         L get_label(int vertex) {
             return label[vertex];
