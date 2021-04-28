@@ -1,0 +1,44 @@
+---
+title: "Clausal Form"
+---
+
+# Implications (I):
+
+$$
+\begin{array}{lll}
+\varphi \Rightarrow \psi &\rightarrow& \lnot\varphi \lor \psi\\
+\varphi \Leftarrow \psi &\rightarrow& \varphi \lor \lnot\psi\\
+\varphi \Leftrightarrow \psi &\rightarrow& (\lnot\varphi \lor \psi) \land (\varphi \lor \lnot\psi)\\
+\end{array}
+$$
+
+# Negations (N):
+
+$$
+\begin{array}{lll}
+\lnot\lnot\varphi &\rightarrow& \varphi \\
+\lnot(\varphi \land \psi) &\rightarrow& \lnot\varphi \lor \lnot\psi\\
+\lnot(\varphi \lor \psi) &\rightarrow& \lnot\varphi \land \lnot\psi
+\end{array}
+$$
+
+# Distribution (D):
+
+$$
+\begin{array}{lll}
+\varphi \lor (\psi \land \chi) &\rightarrow& (\varphi \lor \psi) \land (\varphi \lor \chi)\\
+(\varphi \land \psi) \lor \chi &\rightarrow& (\varphi \lor \chi) \land (\psi \lor \chi)\\
+\varphi \lor (\varphi_1 \lor \ldots \lor \varphi_n) &\rightarrow& \varphi \lor \varphi_1 \lor \ldots \lor \varphi_n\\
+(\varphi_1 \lor \ldots \lor \varphi_n) \lor \varphi &\rightarrow& \varphi_1 \lor \ldots \lor \varphi_n \varphi\\
+\varphi \land (\varphi_1 \land \ldots \land \varphi_n) &\rightarrow& \varphi \land \varphi_1 \land \ldots \land \varphi_n
+\end{array}
+$$
+
+# Operators (O):
+
+$$
+\begin{array}{lll}
+\varphi_1 \lor \ldots \lor \varphi_n &\rightarrow& \{\varphi_1, \ldots , \varphi_n\}\\
+\varphi_1 \land \ldots \land \varphi_n &\rightarrow& \{\varphi_1\}, \ldots , \{\varphi_n\}
+\end{array}
+$$
