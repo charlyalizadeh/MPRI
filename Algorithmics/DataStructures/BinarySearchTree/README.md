@@ -23,6 +23,6 @@ An AVL Tree is a binary search tree which balanced itself when adding/deleting a
 ## Implementation
 
 To implement a binary search tree we use a class with three fields: 
-    * `value`: contains the key/value of the node
-    * `left`: pointer to its left child
-    * `right`: pointer to its right child
+* `value`: contains the key/value of the node
+* `left`: pointer to its left child
+* `right`: pointer to its right child
