@@ -41,6 +41,19 @@ $$
 \end{array}
 $$
 
+### Or Elimination (OE)
+
+$$
+\begin{array}{l}
+\varphi \Rightarrow \chi \\
+\psi \Rightarrow \chi \\
+\varphi \lor \psi \\
+\hline
+\chi
+\end{array}
+$$
+
+
 ### Negation Introduction (NI)
 
 $$
