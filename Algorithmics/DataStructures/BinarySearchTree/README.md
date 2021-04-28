@@ -13,7 +13,7 @@ A binary search tree is a tree data structure where each node has a key greater 
   ┏━┷━┓   ┏━┷━┓   ┏━┷━┓   ┏━┷━┓
   ┃ 1 ┃   ┃ 3 ┃   ┃ 5 ┃   ┃ 7 ┃
   ┗━━━┛   ┗━━━┛   ┗━━━┛   ┗━━━┛
-  Fig 1: example of a complete binary search tree
+  Fig 1: example of a perfect binary search tree
 ```
 
 ## AVL Tree
