@@ -194,3 +194,86 @@ $$
 \fa \lnot p \lor q & Negation Elimination (19)\\
 \end{fitch}
 $$
+
+# Exercise 4.12
+
+Use the Fitch System to prove $((p \Rightarrow q) \Rightarrow p) \Rightarrow p$.
+
+$$
+\begin{fitch}
+\fa \fa (p \Rightarrow q) \Rightarrow p & Assumption\\
+\fa \fa \fa \lnot p & Assumption\\
+\fa \fa \fa \fa p & Assumption\\
+\fa \fa \fa \fa \fa \lnot q & Assumption\\
+\fa \fa \fa \fa \fa p & Reiteration (3)\\
+\fa \fa \fa \fa \lnot q \Rightarrow p & Implication Introduction (4,5)\\
+\fa \fa \fa \fa \fa \lnot q & Assumption\\
+\fa \fa \fa \fa \fa \lnot p & Reiteration (2)\\
+\fa \fa \fa \fa \lnot q \Rightarrow \lnot p & Implication Introduction (7,8)\\
+\fa \fa \fa \fa \lnot \lnot q & Negation Introduction (6,9)\\
+\fa \fa \fa \fa q & Negation Elimination (10)\\
+\fa \fa \fa p \Rightarrow q & Implication Introduction (3,11)\\
+\fa \fa \fa p & Implication Elimination (1,12)\\
+\fa \fa \lnot p \Rightarrow p & Implication Introduction (2,13)\\
+\fa \fa \fa \lnot p & Assumption\\
+\fa \fa \lnot p \Rightarrow \lnot p & Implication Introduction (15,15)\\
+\fa \fa \lnot \lnot p & Negation Introduction (14,16)\\
+\fa \fa p & Negation Elimination (17)\\
+\fa ((p \Rightarrow q) \Rightarrow p) \Rightarrow p & Implication Introduction (1,18)\\
+\end{fitch}
+$$
+
+# Exercise 4.13
+
+Given $\lnot(p \lor q)$, use the Fitch system to prove $(\lnot p \land \lnot q)$.
+
+$$
+\begin{fitch}
+\fj \lnot (p \lor q) & Premise\\
+\fa \fa p & Assumption\\
+\fa \fa p \lor q & Or Introduction (2)\\
+\fa p \Rightarrow p \lor q & Implication Introduction (2,3)\\
+\fa \fa p & Assumption\\
+\fa \fa \lnot (p \lor q) & Reiteration (1)\\
+\fa p \Rightarrow \lnot (p \lor q) & Implication Introduction (5,6)\\
+\fa \lnot p & Negation Introduction (4,7)\\
+\fa \fa q & Assumption\\
+\fa \fa p \lor q & Or Introduction (9)\\
+\fa q \Rightarrow p \lor q & Implication Introduction (9,10)\\
+\fa \fa q & Assumption\\
+\fa \fa \lnot (p \lor q) & Reiteration (1)\\
+\fa q \Rightarrow \lnot (p \lor q) & Implication Introduction (12,13)\\
+\fa \lnot q & Negation Introduction (11,14)\\
+\fa \lnot p \land \lnot q & And Introduction (8,15)\\
+\end{fitch}
+$$
+
+# Exercise 4.14
+
+Use the Fitch system to prove the tautology $(p \lor \lnot p)$
+
+$$
+\begin{fitch}
+\fa \fa \lnot (p \lor \lnot p) & Assumption\\
+\fa \fa \fa p & Assumption\\
+\fa \fa \fa p \lor \lnot p & Or Introduction (2)\\
+\fa \fa p \Rightarrow p \lor \lnot p & Implication Introduction (2,3)\\
+\fa \fa \fa p & Assumption\\
+\fa \fa \fa \lnot (p \lor \lnot p) & Reiteration (1)\\
+\fa \fa p \Rightarrow \lnot (p \lor \lnot p) & Implication Introduction (5,6)\\
+\fa \fa \lnot p & Negation Introduction (4,7)\\
+\fa \lnot (p \lor \lnot p) \Rightarrow \lnot p & Implication Introduction (1,8)\\
+\fa \fa \lnot (p \lor \lnot p) & Assumption\\
+\fa \fa \fa \lnot p & Assumption\\
+\fa \fa \fa p \lor \lnot p & Or Introduction (11)\\
+\fa \fa \lnot p \Rightarrow p \lor \lnot p & Implication Introduction (11,12)\\
+\fa \fa \fa \lnot p & Assumption\\
+\fa \fa \fa \lnot (p \lor \lnot p) & Reiteration (10)\\
+\fa \fa \lnot p \Rightarrow \lnot (p \lor \lnot p) & Implication Introduction (14,15)\\
+\fa \fa \lnot \lnot p & Negation Introduction (13,16)\\
+\fa \fa p & Negation Elimination (17)\\
+\fa \lnot (p \lor \lnot p) \Rightarrow p & Implication Introduction (10,18)\\
+\fa \lnot \lnot (p \lor \lnot p) & Negation Introduction (19,9)\\
+\fa p \lor \lnot p & Negation Elimination (20)\\
+\end{fitch}
+$$
