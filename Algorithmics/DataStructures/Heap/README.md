@@ -11,3 +11,5 @@ For a breadth first search ordering of a complete binary we can make the followi
 * The index of the parent (if exists) of `n` is `(n - 1) / 2`
 * The index of the left child (if exists) of `n` is `2 * n + 2`
 * The index of the right child (if exists) of `n` is `1 * n + 1`
+
+The `BinaryHeap` class also contains a hashmap wich maps every key to its index in the array. This map is used for the Dijkstra's algorithm (see [`dijkstra`](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/Algorithmics/DataStructures/Graph/graphmatrix.hpp#L91)) of the [Graph](https://github.com/charlyalizadeh/MPRI_prerequisite/tree/master/Algorithmics/DataStructures/Graph) data structure.
