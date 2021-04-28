@@ -1,3 +1,8 @@
+#! /usr/bin/python
+
+""" Small utility to convert XML proof to tex """
+
+import sys
 import xml.etree.ElementTree as ET
 
 tex_map = {
@@ -15,11 +20,11 @@ def rawtxt_to_tex(sentence):
     return sentence
 
 
-filename = 'proof.xml'  # input('Enter path:')
+filename = sys.argv[1]
 tree = ET.parse(filename)
 proof_xml = tree.getroot()
 premises = []
-proof = []
+proofs = []
 indent = 1
 for step in proof_xml:
     sentence = rawtxt_to_tex(step[1].text)
@@ -37,7 +42,7 @@ for step in proof_xml:
     if ispremise:
         premises.append([sentence, justification, indent])
     else:
-        proof.append([sentence, justification, indent])
+        proofs.append([sentence, justification, indent])
 
 text_tex = "$$\n\\begin{fitch}\n"
 for i, p in enumerate(premises):
@@ -47,7 +52,7 @@ for i, p in enumerate(premises):
         text_tex += '\\fa '
     text_tex += p[0] + ' & ' + p[1] + '\\\\\n'
 
-for i, p in enumerate(proof):
+for i, p in enumerate(proofs):
     text_tex += '\\fa ' * p[2] + p[0] + ' & ' + p[1] + '\\\\\n'
 
 
