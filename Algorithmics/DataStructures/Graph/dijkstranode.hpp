@@ -3,7 +3,7 @@
 
 #include <string>
 
-// Node for dijstra Implementation
+
 struct DijkstraNode {
     int v;
     int dist;
