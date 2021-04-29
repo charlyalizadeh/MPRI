@@ -2,6 +2,7 @@
 title: "Clausal Form Exercises"
 header-includes:
     - \usepackage{xcolor}
+    - \usepackage{fitch}
 ---
 
 # Exercise 5.1
@@ -66,3 +67,38 @@ In each of the following questions, say which of the answers best characterizes 
     . $\{p, \lnot p\}$, $\{q, \lnot q\}$, $\{r, \lnot r\}$  
     . $\{\}$  
     . There are no resolvents.  
+
+# Exercise 5.3
+
+Use Propositional Resolution to show that the clauses $\{p, q\}$, $\{\lnot p, r\}$, $\{\lnot p, \lnot r\}$, $\{p, \lnot q\}$ are not simultaneously satisfiable.
+$$
+\begin{fitch}
+\fa \{p,q\} & Premise\\
+\fa \{\lnot p,r\} & Premise\\
+\fa \{\lnot p,\lnot r\} & Premise\\
+\fj \{p,\lnot q\} & Premise\\
+\fa \{p\} & Resolution (1,4)\\
+\fa \{\lnot p\} & Resolution (2,3)\\
+\fa \{\} & Resolution (5,6)\\
+\end{fitch}
+$$
+
+# Exercise 5.4
+
+Given the premises $(p \Rightarrow q)$ and $(r \Rightarrow s)$,use Propositional Resolution to prove the conclusion $(p \lor r \Rightarrow q \lor s)$.
+
+Note: I already converted the premise to clausal form, I'll add the clausal form process later.
+
+$$
+\begin{fitch}
+\fa \{\lnot p,q\} & Premise\\
+\fa \{\lnot r,s\} & Premise\\
+\fa \{p,r\} & Premise\\
+\fa \{\lnot q\} & Premise\\
+\fj \{\lnot s\} & Premise\\
+\fa \{\lnot r\} & Resolution (2,5)\\
+\fa \{\lnot p\} & Resolution (1,4)\\
+\fa \{p\} & Resolution (3,6)\\
+\fa \{\} & Resolution (8,7)\\
+\end{fitch}
+$$
