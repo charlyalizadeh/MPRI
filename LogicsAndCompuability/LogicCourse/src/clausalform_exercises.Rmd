@@ -4,6 +4,8 @@ header-includes:
     - \usepackage{xcolor}
 ---
 
+# Exercise 5.1
+
 For each of the following sentences, say which set of clauses is the correct clausal form.
 
 1. $p \land q \Rightarrow r \lor s$
@@ -34,3 +36,33 @@ For each of the following sentences, say which set of clauses is the correct cla
     . $\{\lnot p, \lnot q, r\}, \{\lnot r, p\}, \{\lnot r, q\}$ $\color{green} \surd$   
     . $\{\lnot p, r\}, \{\lnot q, r\}, \{p, q, \lnot r\}$  
     . $\{p\}, \{q\}, \{r\}$  
+
+# Exercise 5.2
+
+
+In each of the following questions, say which of the answers best characterizes the result of applying resolution to the clauses shown.
+
+1. $\{p, q, \lnot r\}$ and $\{r, s\}$  
+    . $\{p, q, s\}$  $\color{green} \surd$     
+    . $\{p, q, r, s\}$  
+    . $\{p, q, \lnot r, s\}$  
+    . There are no resolvents.  
+  
+2. $\{p, q, r\}$ and $\{r, \lnot s, \lnot t\}$  
+    . $\{p, q, r, \lnot s, \lnot t\}$  
+    . $\{p, q, \lnot s, \lnot t\}$  
+    . There are no resolvents. $\color{green} \surd$     
+  
+3. $\{q, \lnot q\}$ and $\{q, \lnot q\}$  
+    . $\{q, \lnot q\}$ $\color{green} \surd$     
+    . $\{q\}$  
+    . $\{\lnot q\}$  
+    . $\{\}$  
+    . There are no resolvents.  
+  
+4. $\{\lnot p, q, r\}$ and $\{p, \lnot q, \lnot r\}$  
+    . $\{\lnot p, q, r, p, \lnot q, \lnot r\}$  
+    . $\{q, r, \lnot q, \lnot r\}$, $\{\lnot p, r, p, \lnot r\}$, $\{\lnot p, q, p, \lnot q\}$ $\color{green} \surd$     
+    . $\{p, \lnot p\}$, $\{q, \lnot q\}$, $\{r, \lnot r\}$  
+    . $\{\}$  
+    . There are no resolvents.  
