@@ -1,0 +1,36 @@
+---
+title: "Clausal Form Exercises"
+header-includes:
+    - \usepackage{xcolor}
+---
+
+For each of the following sentences, say which set of clauses is the correct clausal form.
+
+1. $p \land q \Rightarrow r \lor s$
+    . $\{p, q, r, s\}$  
+    . $\{\lnot p, \lnot q, r, s\}$ $\color{green} \surd$  
+    . $\{\lnot p, \lnot q, r\}, \{\lnot p, \lnot q, s\}$  
+    . $\{\lnot p, r, s\}, \{\lnot q, r, s\}$  
+    . $\{\lnot p\}, \{\lnot q\}, \{r\}, \{s\}$  
+
+2. $p \lor q \Rightarrow r \lor s$
+    . $\{p, q, r, s\}$  
+    . $\{\lnot p, \lnot q, r, s\}$  
+    . $\{\lnot p, \lnot q, r\}, \{\lnot p, \lnot q, s\}$  
+    . $\{\lnot p, r, s\}, \{\lnot q, r, s\}$ $\color{green} \surd$  
+    . $\{\lnot p\}, \{\lnot q\}, \{r\}, \{s\}$  
+
+3. $\lnot (p \lor q \lor r)$  
+    . $\{\lnot p, \lnot q, \lnot r\}$  
+    . $\{\lnot p\}, \{\lnot q\}, \{\lnot r\}$ $\color{green} \surd$   
+
+4. $\lnot (p \land q \land r)$  
+    . $\{\lnot p, \lnot q, \lnot r\}$ $\color{green} \surd$   
+    . $\{\lnot p\}, \{\lnot q\}, \{\lnot r\}$  
+
+5. $p \land q \Leftrightarrow r$  
+    . $\{p, q\}, \{r\}$  
+    . $\{\lnot p, \lnot q\}, \{r\}$  
+    . $\{\lnot p, \lnot q, r\}, \{\lnot r, p\}, \{\lnot r, q\}$ $\color{green} \surd$   
+    . $\{\lnot p, r\}, \{\lnot q, r\}, \{p, q, \lnot r\}$  
+    . $\{p\}, \{q\}, \{r\}$  
