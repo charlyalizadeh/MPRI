@@ -10,7 +10,9 @@ tex_map = {
     '&': '\\land',
     '=>': '\\Rightarrow',
     '<=>': '\\Leftrightarrow',
-    '~': '\\lnot '
+    '~': '\\lnot ',
+    '{': '$\{',
+    '}': '\}$'
 }
 
 
