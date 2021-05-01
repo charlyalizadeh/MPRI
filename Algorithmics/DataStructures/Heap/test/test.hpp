@@ -1,13 +1,14 @@
 #include <cxxtest/TestSuite.h>
 #include <vector>
 #include "../heap.hpp"
+#include "../heapmap.hpp"
 
 // Max Binary Heap test
 class MaxBinaryHeapTest: public CxxTest::TestSuite {
     public:
         void test_constructors() {
             std::vector<int> data({1, 2, 3, 4});
-            auto heap = BinaryHeap<int>(data);
+            auto heap = BinaryHeapMapped<int>(data);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({4, 2, 3, 1}));
             auto imap = std::map<int,size_t>{{4,0}, {2,1}, {3,2}, {1,3}};
             TS_ASSERT_EQUALS(heap.get_map(), imap);
@@ -17,7 +18,7 @@ class MaxBinaryHeapTest: public CxxTest::TestSuite {
             std::vector<int> data2({1, 3, 5, 7});
             auto heap1 = BinaryHeap<int>(data1);
             auto heap2 = BinaryHeap<int>(data2);
-            auto merged_heap = BinaryHeap<int>();
+            auto merged_heap = BinaryHeapMapped<int>();
             heap1.merge(heap2, merged_heap);
             TS_ASSERT_EQUALS(merged_heap.get_vector(), std::vector<int>({8, 7, 6, 1, 4, 3, 5, 0}));
             auto imap = std::map<int,size_t>{{8,0}, {7,1}, {6,2}, {1,3}, {4,4}, {3,5}, {5,6}, {0,7}};
@@ -26,8 +27,8 @@ class MaxBinaryHeapTest: public CxxTest::TestSuite {
         void test_meld() {
             std::vector<int> data1({0, 4, 6, 8});
             std::vector<int> data2({1, 3, 5, 7});
-            auto heap1 = BinaryHeap<int>(data1);
-            auto heap2 = BinaryHeap<int>(data2);
+            auto heap1 = BinaryHeapMapped<int>(data1);
+            auto heap2 = BinaryHeapMapped<int>(data2);
             heap1.meld(heap2);
             TS_ASSERT_EQUALS(heap1.get_vector(), std::vector<int>({8, 7, 6, 1, 4, 3, 5, 0}));
             auto imap = std::map<int,size_t>{{8,0}, {7,1}, {6,2}, {1,3}, {4,4}, {3,5}, {5,6}, {0,7}};
@@ -40,7 +41,7 @@ class MaxBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_pop() {
             std::vector<int> data({1, 2, 3, 4});
-            auto heap = BinaryHeap<int>(data);
+            auto heap = BinaryHeapMapped<int>(data);
             TS_ASSERT_EQUALS(heap.pop(), 4);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({3, 2, 1}));
             auto imap = std::map<int,size_t>{{3, 0}, {2, 1}, {1, 2}};
@@ -48,7 +49,7 @@ class MaxBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_delete_node() {
             std::vector<int> data({6, 5, 4, 3, 2, 1});
-            auto heap = BinaryHeap<int>(data);
+            auto heap = BinaryHeapMapped<int>(data);
             heap.delete_node(1);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({6, 3, 4, 1, 2}));
             auto imap = std::map<int,size_t>{{6, 0}, {3, 1}, {4, 2}, {1, 3}, {2, 4}};
@@ -56,7 +57,7 @@ class MaxBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_replace() {
             std::vector<int> data({6, 5, 4, 3, 2, 1});
-            auto heap = BinaryHeap<int>(data);
+            auto heap = BinaryHeapMapped<int>(data);
             heap.replace(0, 0);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({5, 3, 4, 0, 2, 1}))
             auto imap = std::map<int,size_t>{{5, 0}, {3, 1}, {4, 2}, {0, 3}, {2, 4}, {1, 5}};
@@ -131,7 +132,7 @@ class MaxBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_get_vector() {
             std::vector<int> data({1, 2, 3});
-            auto heap = BinaryHeap<int>(data);
+            auto heap = BinaryHeapMapped<int>(data);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({3, 2, 1}));
             auto imap = std::map<int,size_t>{{3,0}, {2,1}, {1,2}};
             TS_ASSERT_EQUALS(heap.get_map(), imap);
@@ -149,9 +150,9 @@ class MinBinaryHeapTest: public CxxTest::TestSuite {
         void test_merge() {
             std::vector<int> data1({8, 6, 4, 0});
             std::vector<int> data2({7, 5, 3, 1});
-            auto heap1 = BinaryHeap<int, std::less<int>>(data1);
-            auto heap2 = BinaryHeap<int, std::less<int>>(data2);
-            auto merged_heap = BinaryHeap<int, std::less<int>>();
+            auto heap1 = BinaryHeapMapped<int, std::less<int>>(data1);
+            auto heap2 = BinaryHeapMapped<int, std::less<int>>(data2);
+            auto merged_heap = BinaryHeapMapped<int, std::less<int>>();
             heap1.merge(heap2, merged_heap);
             TS_ASSERT_EQUALS(merged_heap.get_vector(), std::vector<int>({0, 1, 3, 7, 6, 5, 4, 8}));
             auto imap = std::map<int,size_t>{{0,0}, {1,1}, {3,2}, {7,3}, {6,4}, {5,5}, {4,6}, {8,7}};
@@ -160,8 +161,8 @@ class MinBinaryHeapTest: public CxxTest::TestSuite {
         void test_meld() {
             std::vector<int> data1({8, 6, 4, 0});
             std::vector<int> data2({7, 5, 3, 1});
-            auto heap1 = BinaryHeap<int, std::less<int>>(data1);
-            auto heap2 = BinaryHeap<int, std::less<int>>(data2);
+            auto heap1 = BinaryHeapMapped<int, std::less<int>>(data1);
+            auto heap2 = BinaryHeapMapped<int, std::less<int>>(data2);
             heap1.meld(heap2);
             TS_ASSERT_EQUALS(heap1.get_vector(), std::vector<int>({0, 1, 3, 7, 6, 5, 4, 8}));
             auto imap = std::map<int,size_t>{{0,0}, {1,1}, {3,2}, {7,3}, {6,4}, {5,5}, {4,6}, {8,7}};
@@ -169,12 +170,12 @@ class MinBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_peek() {
             std::vector<int> data({4, 3, 2, 1});
-            auto heap = BinaryHeap<int, std::less<int>>(data);
+            auto heap = BinaryHeapMapped<int, std::less<int>>(data);
             TS_ASSERT_EQUALS(heap.peek(), 1);
         }
         void test_pop() {
             std::vector<int> data({4, 3, 2, 1});
-            auto heap = BinaryHeap<int, std::less<int>>(data);
+            auto heap = BinaryHeapMapped<int, std::less<int>>(data);
             TS_ASSERT_EQUALS(heap.pop(), 1);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({2, 3, 4}));
             auto imap = std::map<int,size_t>{{2,0}, {3,1}, {4,2}};
@@ -182,7 +183,7 @@ class MinBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_delete_node() {
             std::vector<int> data({1, 2, 3, 4, 5, 6});
-            auto heap = BinaryHeap<int, std::less<int>>(data);
+            auto heap = BinaryHeapMapped<int, std::less<int>>(data);
             heap.delete_node(0);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({2, 4, 3, 6, 5}));
             auto imap = std::map<int,size_t>{{2,0}, {4,1}, {3,2}, {6,3}, {5,4}};
@@ -190,7 +191,7 @@ class MinBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_replace() {
             std::vector<int> data({1, 2, 3, 4, 5, 6});
-            auto heap = BinaryHeap<int, std::less<int>>(data);
+            auto heap = BinaryHeapMapped<int, std::less<int>>(data);
             heap.replace(0, 7);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<int>({2, 4, 3, 7, 5, 6}))
             auto imap = std::map<int,size_t>{{2,0}, {4,1}, {3,2}, {7,3}, {5,4}, {6,5}};
@@ -198,14 +199,14 @@ class MinBinaryHeapTest: public CxxTest::TestSuite {
         }
         void test_size() {
             std::vector<int> data({4, 3, 2, 1});
-            auto heap = BinaryHeap<int, std::less<int>>(data);
+            auto heap = BinaryHeapMapped<int, std::less<int>>(data);
             TS_ASSERT_EQUALS(heap.size(), 4);
         }
         void test_empty() {
             auto heap_empty = BinaryHeap<int, std::less<int>>();
             TS_ASSERT(heap_empty.empty());
             std::vector<int> data({4, 3, 2, 1});
-            auto heap = BinaryHeap<int, std::less<int>>(data);
+            auto heap = BinaryHeapMapped<int, std::less<int>>(data);
             TS_ASSERT(!heap.empty());
         }
         void test_left_child() {
@@ -320,9 +321,9 @@ class MinBinaryHeapNodeTest: public CxxTest::TestSuite {
         void test_merge() {
             std::vector<Node> data1({{0,8}, {1,6}, {2,4}, {3,0}});
             std::vector<Node> data2({{4,7}, {5,5}, {6,3}, {7,1}});
-            auto heap1 = BinaryHeap<Node, std::less<Node>>(data1);
-            auto heap2 = BinaryHeap<Node, std::less<Node>>(data2);
-            auto merged_heap = BinaryHeap<Node, std::less<Node>>();
+            auto heap1 = BinaryHeapMapped<Node, std::less<Node>>(data1);
+            auto heap2 = BinaryHeapMapped<Node, std::less<Node>>(data2);
+            auto merged_heap = BinaryHeapMapped<Node, std::less<Node>>();
             heap1.merge(heap2, merged_heap);
             TS_ASSERT_EQUALS(merged_heap.get_vector(), std::vector<Node>({{3,0}, {7,1}, {6,3}, {4,7}, {1,6}, {5,5}, {2,4}, {0,8}}));
             auto imap = std::map<Node,size_t>{{{3,0},0}, {{7,1},1}, {{6,3},2}, {{4,7},3}, {{1,6},4}, {{5,5},5}, {{2,4},6}, {{0,8},7}};
@@ -331,8 +332,8 @@ class MinBinaryHeapNodeTest: public CxxTest::TestSuite {
         void test_meld() {
             std::vector<Node> data1({{0,8}, {1,6}, {2,4}, {3,0}});
             std::vector<Node> data2({{4,7}, {5,5}, {6,3}, {7,1}});
-            auto heap1 = BinaryHeap<Node, std::less<Node>>(data1);
-            auto heap2 = BinaryHeap<Node, std::less<Node>>(data2);
+            auto heap1 = BinaryHeapMapped<Node, std::less<Node>>(data1);
+            auto heap2 = BinaryHeapMapped<Node, std::less<Node>>(data2);
             heap1.meld(heap2);
             TS_ASSERT_EQUALS(heap1.get_vector(), std::vector<Node>({{3,0}, {7,1}, {6,3}, {4,7}, {1,6}, {5,5}, {2,4}, {0,8}}));
             auto imap = std::map<Node,size_t>{{{3,0},0}, {{7,1},1}, {{6,3},2}, {{4,7},3}, {{1,6},4}, {{5,5},5}, {{2,4},6}, {{0,8},7}};
@@ -345,7 +346,7 @@ class MinBinaryHeapNodeTest: public CxxTest::TestSuite {
         }
         void test_pop() {
             std::vector<Node> data({{0,4}, {1,3}, {2,2}, {3,1}});
-            auto heap = BinaryHeap<Node, std::less<Node>>(data);
+            auto heap = BinaryHeapMapped<Node, std::less<Node>>(data);
             TS_ASSERT_EQUALS(heap.pop(), Node(3,1));
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<Node>({{2,2}, {1,3}, {0,4}}));
             auto imap = std::map<Node,size_t>{{{2,2},0}, {{1,3},1}, {{0,4},2}};
@@ -353,7 +354,7 @@ class MinBinaryHeapNodeTest: public CxxTest::TestSuite {
         }
         void test_delete_node() {
             std::vector<Node> data({{0,1}, {1,2}, {2,3}, {3,4}, {4,5}, {5,6}});
-            auto heap = BinaryHeap<Node, std::less<Node>>(data);
+            auto heap = BinaryHeapMapped<Node, std::less<Node>>(data);
             heap.delete_node(0);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<Node>({{1,2}, {3,4}, {2,3}, {5,6}, {4,5}}));
             auto imap = std::map<Node,size_t>{{{1,2},0}, {{3,4},1}, {{2,3},2}, {{5,6},3}, {{4,5},4}};
@@ -361,7 +362,7 @@ class MinBinaryHeapNodeTest: public CxxTest::TestSuite {
         }
         void test_replace() {
             std::vector<Node> data({{0,1}, {1,2}, {2,3}, {3,4}, {4,5}, {5,6}});
-            auto heap = BinaryHeap<Node, std::less<Node>>(data);
+            auto heap = BinaryHeapMapped<Node, std::less<Node>>(data);
             heap.replace(0, Node(6,7));
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<Node>({{1,2}, {3,4}, {2,3}, {6,7}, {4,5}, {5,6}}))
             auto imap = std::map<Node,size_t>{{{1,2},0}, {{3,4},1}, {{2,3},2}, {{6,7},3}, {{4,5},4}, {{5,6},5}};
@@ -441,7 +442,7 @@ class MinBinaryHeapNodeTest: public CxxTest::TestSuite {
         }
         void test_decrease_key() {
             std::vector<Node> data({{0,3}, {1,2}, {2,1}});
-            auto heap = BinaryHeap<Node, std::less<Node>>(data);
+            auto heap = BinaryHeapMapped<Node, std::less<Node>>(data);
             heap.decrease_key(Node(0,3), 4);
             TS_ASSERT_EQUALS(heap.get_vector(), std::vector<Node>({{0,-1}, {1,2}, {2,1}}));
         }
