@@ -1,10 +1,9 @@
 /*
  * Implementation of a Binary Heap data structure. 
- * The `m_map` field is added to be used with Dijkstra's algorithm.
  * TODO: Implement Fibonacci Heap
  */
-#ifndef HEAP_H
-#define HEAP_H
+#ifndef BINARYHEAP_H
+#define BINARYHEAP_H
 
 #include <vector>
 #include <algorithm>
@@ -14,33 +13,27 @@
 #include <map>
 
 
-int left_child_index(size_t index) {
+inline int left_child_index(size_t index) {
     return 2 * index + 1;
 }
-int right_child_index(size_t index) {
+inline int right_child_index(size_t index) {
     return 2 * index + 2;
 }
-int parent_index(size_t index) {
+inline int parent_index(size_t index) {
     return (index - 1) / 2;
 }
 
-template <typename T, typename Compare = std::greater<T>, typename CompareMap = std::less<T>>
+template <typename T, typename Compare = std::greater<T>>
 class BinaryHeap {
     protected:
         std::vector<T> m_data;
         Compare m_comp;
 
     public:
-        std::map<T, size_t, CompareMap> m_map;
-
-    public:
 
         // Creation
-        BinaryHeap(Compare comp = Compare()): m_data({}), m_comp(comp), m_map() { }
+        BinaryHeap(Compare comp = Compare()): m_data({}), m_comp(comp)  { }
         BinaryHeap(std::vector<T>& data, Compare comp = Compare()): m_data(data), m_comp(comp) { 
-            for(int i = 0; i < m_data.size(); i++) {
-                m_map[m_data[i]] = i;
-            }
             for(int i = m_data.size() / 2 - 1; i >= 0; i--) {
                 heapify_down(i);
             }
@@ -62,9 +55,8 @@ class BinaryHeap {
         const T& peek() const {
             return m_data[0];
         }
-        void push(const T& value) {
+        virtual void push(const T& value) {
             m_data.push_back(value);
-            m_map[value] = m_data.size() - 1;
             heapify_up(m_data.size() - 1);
         }
         T pop() {
@@ -73,14 +65,12 @@ class BinaryHeap {
             delete_node(0);
             return value;
         }
-        void delete_node(size_t index) {
+        virtual void delete_node(size_t index) {
             if(!has_child(index)) {
-                m_map.erase(m_data[index]);
                 m_data.erase(m_data.begin() + index);
             }
             else {
                 swap(index, m_data.size() - 1);
-                m_map.erase(m_data[m_data.size() - 1]);
                 m_data.pop_back();
                 heapify_down(index);
             }
@@ -96,17 +86,8 @@ class BinaryHeap {
                 heapify_down(index);
             }
         }
-        void clear() {
+        virtual void clear() {
             m_data.clear();
-            m_map.clear();
-        }
-        // TODO: Too specific to T type allowing `-int`
-        // Also I assume that the heap is a min binary heap.
-        // I allow myself this implementation because it's only
-        // used in Dijkstra's algorithm.
-        void decrease_key(T key, int value) {
-            m_data[m_map[key]] -= value;
-            heapify_up(m_map[key]);
         }
 
         // Inspection
@@ -143,9 +124,6 @@ class BinaryHeap {
         const std::vector<T>& get_vector() const {
             return m_data;
         }
-        const std::map<T,size_t>& get_map() const {
-            return m_map;
-        }
 
         friend std::ostream& operator<<(std::ostream& out, const BinaryHeap<T, Compare>& heap) {
             if(!heap.empty()) {
@@ -160,26 +138,18 @@ class BinaryHeap {
     protected:
 
         // Internal
-        void swap(size_t index1, size_t index2) {
-            m_map[m_data[index1]] = index2;
-            m_map[m_data[index2]] = index1;
+        virtual void swap(size_t index1, size_t index2) {
             std::iter_swap(m_data.begin() + index1, m_data.begin() + index2);
         }
         // Could by optimized
-        void set_data(const std::vector<T>& data) {
+        virtual void set_data(const std::vector<T>& data) {
             m_data = data;
-            m_map.clear();
-            for(int i = 0; i < m_data.size(); i++) {
-                m_map[m_data[i]] = i;
-            }
             for(int i = m_data.size() / 2 - 1; i >= 0; i--) {
                 heapify_down(i);
             }
         }
-        void set_data(size_t index, const T& d) {
-            m_map.erase(m_data[index]);
+        virtual void set_data(size_t index, const T& d) {
             m_data[index] = d;
-            m_map[d] = index;
         }
         void heapify_up(size_t index) {
             int p_index = parent_index(index);
@@ -209,4 +179,4 @@ class BinaryHeap {
         }
 };
 
-#endif // HEAP_H
+#endif // BINARYHEAP_H
