@@ -16,3 +16,7 @@ ShortestPath : $(OBJ)
 clean :
 	rm -f ./obj/*
 	rm -f ./bin/*
+
+build:
+	mkdir -p ./obj/
+	mkdir -p ./bin/
