@@ -2,6 +2,8 @@
 #define DIJKSTRANODE_H
 
 #include <string>
+#include <map>
+#include "../Heap/heapmap.hpp"
 
 
 struct DijkstraNode {
@@ -46,5 +48,19 @@ inline bool operator==(int lhs, const DijkstraNode& rhs) {
 inline bool operator==(const DijkstraNode& lhs, const DijkstraNode& rhs) {
     return lhs.v == rhs.v;
 }
+
+template <typename T, typename Compare = std::less<T>, typename CompareMap = std::less<T>>
+class DijkstraBinaryHeap: public BinaryHeapMapped<T,Compare,CompareMap> {
+    public:
+        // TODO: Too specific to T type allowing `-int`
+        // Also I assume that the heap is a min binary heap.
+        // I allow myself this implementation because it's only
+        // used in Dijkstra's algorithm.
+        void decrease_key(T key, int value) {
+            this->m_data[this->m_map[key]] -= value;
+            this->heapify_up(this->m_map[key]);
+        }
+};
+
 
 #endif
