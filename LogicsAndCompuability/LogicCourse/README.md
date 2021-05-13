@@ -11,3 +11,4 @@ I use [rmarkdown](https://rmarkdown.rstudio.com/) to take notes.
 * Propositional Resolution
     * Clausal Form [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/pdf/clausalform.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/src/clausalform.Rmd)
     * Clausal Form Exercises [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/pdf/clausalform_exercises.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/src/clausalform_exercises.Rmd)
+* Relational Logic [[PDF]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/pdf/relational_logic.pdf) [[rmarkdown]](https://github.com/charlyalizadeh/MPRI_prerequisite/blob/master/LogicsAndCompuability/LogicCourse/src/relational_logic.Rmd)
